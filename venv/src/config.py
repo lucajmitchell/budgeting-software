@@ -49,6 +49,7 @@ ALIASES = {
   '.*WEAREHOMESFOR.*': 'Printworks',
   ".*WATER'S EDGE.*": "Water's Edge",
   '.*ABBEY WAY SERVICES.*': 'Corner Shop',
+  '.*SLC DISBURSEMENTS.*': 'SFE',
 
   # People
   '.*Liliana Cernecca.*': 'Lili',

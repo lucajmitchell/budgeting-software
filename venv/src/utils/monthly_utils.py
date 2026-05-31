@@ -56,3 +56,43 @@ def getMonthlyExpenses(monthlyData):
     monthlyExpenses[month] = abs(expenses)
 
   return monthlyExpenses
+
+def getMonthlyIncomeByPayee(monthlyData):
+  '''Returns dictionary with income from each payee for each month'''
+
+  monthlyIncomeByPayee = {}
+
+  for month in monthlyData.keys():
+    income = {}
+    transactions = monthlyData[month]
+
+    for transaction in transactions:
+      if transaction['Amount'] > 0:
+        if transaction['Payee'] in income:
+          income[transaction['Payee']] += transaction['Amount']
+        else:
+          income[transaction['Payee']] = transaction['Amount']
+
+    monthlyIncomeByPayee[month] = income
+
+  return monthlyIncomeByPayee
+
+def getMonthlyExpensesByPayee(monthlyData):
+  '''Returns dictionary with expenses for each payee for each month'''
+
+  monthlyExpensesByPayee = {}
+
+  for month in monthlyData.keys():
+    expenses = {}
+    transactions = monthlyData[month]
+
+    for transaction in transactions:
+      if transaction['Amount'] < 0:
+        if transaction['Payee'] in expenses:
+          expenses[transaction['Payee']] += abs(transaction['Amount'])
+        else:
+          expenses[transaction['Payee']] = abs(transaction['Amount'])
+
+    monthlyExpensesByPayee[month] = expenses
+
+  return monthlyExpensesByPayee
