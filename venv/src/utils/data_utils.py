@@ -16,18 +16,18 @@ class Data:
     return df
   
 def getConsolidatedData():
-  '''Consolidates all data from files stored in SOURCE_PREFIX folder to a single DataFrame and returns it.'''
+  '''Returns a single DataFrame consolidating all data from SOURCE_PREFIX folder'''
 
-  # Get list of all data sources
-  data_files = os.listdir(SOURCE_PREFIX)
+  # Get list of data sources
+  dataFiles = os.listdir(SOURCE_PREFIX)
 
-  # Extract all data from files into a list of dataframes
+  # Extract data from files into list of dataframes
   dataframes = []
-  for file in data_files:
+  for file in dataFiles:
     df = Data(file).getDf()
     dataframes.append(df)
 
-  # Consolidate all data into a single dataframe
+  # Consolidate data into a single dataframe
   concat_data = pd.concat(dataframes)
 
   return concat_data

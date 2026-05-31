@@ -1,32 +1,32 @@
 import pandas as pd
 
-def getFormattedDate(date):
-  '''Takes date in form DD/MM/YYY and returns it in the form MM_YYYY'''
+def formatDate(date):
+  '''Returns date formatted from DD/MM/YYY to MM_YYYY'''
 
   # Split date at every instance of '/'
-  split_date = date.split('/')
+  dateSplit = date.split('/')
 
-  # Assemble date in format MM_YYYY
-  month = split_date[1]
-  year = split_date[2]
-  formatted_date = f'{month}_{year}'
+  # Assemble formatted date
+  month = dateSplit[1]
+  year = dateSplit[2]
+  dateFormatted = f'{month}_{year}'
 
-  return formatted_date
+  return dateFormatted
 
 def getMonthlyData(allData):
-  '''Returns a dict where each key holds transaction records for all transactions made that month'''
+  '''Returns dictionary with transaction records organised by month'''
 
   monthlyData = {}
 
-  # Convert DataFrame to records form
+  # Convert DataFrame to records
   records = allData.to_dict(orient='records')
 
   # Assigns record to a key based on date
   for record in records:
-    formatted_date = getFormattedDate(record['Date'])
-    if formatted_date in monthlyData:
-      monthlyData[formatted_date].append(record)
+    dateFormatted = formatDate(record['Date'])
+    if dateFormatted in monthlyData:
+      monthlyData[dateFormatted].append(record)
     else:
-      monthlyData[formatted_date] = [record]
+      monthlyData[dateFormatted] = [record]
 
   return monthlyData
