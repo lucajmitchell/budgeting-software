@@ -13,6 +13,15 @@ class Data:
     # Replace long names with aliases
     df["Payee"] = df["Payee"].replace(ALIASES, regex=True)
 
+    # Convert amounts to decimal
+    df["Amount"] = (
+      df["Amount"]
+      .astype(str)
+      .str.replace(",", "", regex=False)
+      .str.strip()
+      .astype(float)
+    )
+
     return df
   
 def getConsolidatedData():

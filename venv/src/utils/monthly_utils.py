@@ -30,3 +30,29 @@ def getMonthlyData(allData):
       monthlyData[dateFormatted] = [record]
 
   return monthlyData
+
+def getMonthlyIncome(monthlyData):
+  '''Returns total amount of money paid into account each month'''
+
+  monthlyIncome = {}
+
+  for month in monthlyData.keys():
+    transactions = monthlyData[month]
+    transactionAmounts = [transaction['Amount'] for transaction in transactions]
+    income = sum([amount for amount in transactionAmounts if amount > 0 ])
+    monthlyIncome[month] = income
+
+  return monthlyIncome
+
+def getMonthlyExpenses(monthlyData):
+  '''Returns total amount of money paid out of account each month'''
+
+  monthlyExpenses = {}
+
+  for month in monthlyData.keys():
+    transactions = monthlyData[month]
+    transactionAmounts = [transaction['Amount'] for transaction in transactions]
+    expenses = sum([amount for amount in transactionAmounts if amount < 0 ])
+    monthlyExpenses[month] = abs(expenses)
+
+  return monthlyExpenses
