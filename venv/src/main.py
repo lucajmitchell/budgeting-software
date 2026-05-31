@@ -1,4 +1,6 @@
-from data_utils import getConsolidatedData
+from utils.data_utils import getConsolidatedData
+from utils.monthly_utils import getMonthlyData
 
 data = getConsolidatedData()
-print(data)
+monthlyData = getMonthlyData(allData=data)
+print(monthlyData)
