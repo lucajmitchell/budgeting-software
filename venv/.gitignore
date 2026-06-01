@@ -4,3 +4,4 @@ lib
 pyvenv.cfg
 __pycache__
 src/data
+src/database.db

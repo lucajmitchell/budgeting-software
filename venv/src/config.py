@@ -1,6 +1,4 @@
-SOURCE_PREFIX = 'venv/src/data/'
-
-DATA_COLUMN_TITLES = ['Date', 'Payee', 'Amount']
+DATA_FOLDER = 'venv/src/data/'
 
 ALIASES = {
   # Accounts
