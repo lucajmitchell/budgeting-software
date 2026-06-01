@@ -1,4 +1,5 @@
 import pandas as pd
+from config import CATEGORIES
 
 def formatDate(date):
   '''Returns date formatted from DD/MM/YYY to MM_YYYY'''
@@ -96,3 +97,54 @@ def getMonthlyExpensesByPayee(monthlyData):
     monthlyExpensesByPayee[month] = expenses
 
   return monthlyExpensesByPayee
+
+def getTransactionCategory(payee):
+  '''Returns the category the payee belongs to, or "Miscellaneous" if they don't belong to any'''
+
+  for key, value in CATEGORIES.items():
+    if payee in value:
+      return key
+
+  return 'Miscellaneous'
+
+def getMonthlyIncomeByCategory(monthlyData):
+  '''Returns dictionary with income from each category for each month'''
+  
+  monthlyIncomeByCategory = {}
+
+  for month in monthlyData.keys():
+    income = {}
+    transactions = monthlyData[month]
+
+    for transaction in transactions:
+      category = getTransactionCategory(transaction['Payee'])
+      if transaction['Amount'] > 0:
+        if category in income:
+          income[category] += transaction['Amount']
+        else:
+          income[category] = transaction['Amount']
+
+    monthlyIncomeByCategory[month] = income
+  
+  return monthlyIncomeByCategory
+
+def getMonthlyExpensesByCategory(monthlyData):
+  '''Returns dictionary with expenses for each category for each month'''
+  
+  monthlyExpensesByCategory = {}
+
+  for month in monthlyData.keys():
+    expenses = {}
+    transactions = monthlyData[month]
+
+    for transaction in transactions:
+      category = getTransactionCategory(transaction['Payee'])
+      if transaction['Amount'] < 0:
+        if category in expenses:
+          expenses[category] += transaction['Amount']
+        else:
+          expenses[category] = transaction['Amount']
+
+    monthlyExpensesByCategory[month] = expenses
+
+  return monthlyExpensesByCategory

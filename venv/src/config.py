@@ -56,3 +56,18 @@ ALIASES = {
   '.*Jac Jones.*': 'Jac',
   '.*Anna Ayres.*': 'Anna',
 }
+
+CATEGORIES = {
+  'Pubs': [
+    'Wetherspoons',
+    'Duke of York',
+    'Black Horse',
+  ],
+  'Transport': [
+    'Trainline',
+    'Stagecoach',
+  ],
+  'Work': [
+    "Water's Edge",
+  ]
+}
