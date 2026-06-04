@@ -1,0 +1,166 @@
+html {
+  font-size: 8px;
+}
+
+:root {
+  --bg: #0a0a0a;
+  --bg-muted: #161616;
+  --bg-muted-2: #1d1d1d;
+  --fg: #e5e5e5;
+  --fg-muted: #666666;
+  --border: #2e2e2e;
+  --trans: rgba(255, 255, 255, 0.03);
+
+  --space-sm: 1rem;
+  --space-md: 2rem;
+  --space-lg: 4rem;
+
+  --text-sm: 12px;
+  --text-md: 14px;
+  --text-lg: 18px;
+  --text-xl: 24px;
+}
+
+@font-face {
+  font-family: "Inter";
+  src: url(InterVariable.ttf);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: var(--fg);
+  font-family: "Inter";
+  font-size: var(--text-md);
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+body {
+  background-color: var(--bg-muted);
+}
+
+.main {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-sm);
+  padding: var(--space-sm);
+  min-height: 100vh;
+}
+
+/* Side bar */
+
+.side-bar {
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-sm);
+}
+
+.side-bar .button {
+  width: 30rem;
+}
+
+.side-bar .gap {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.side-bar hr {
+  margin-block: var(--space-md);
+}
+
+.side-bar-subtitle {
+  margin-left: var(--space-sm);
+}
+
+/* Main content page structure */
+
+.info-panel {
+  background-color: var(--bg);
+  flex-grow: 1;
+  min-height: 100%;
+  border-radius: var(--space-md);
+}
+
+.top-bar {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  height: fit-content;
+  padding: var(--space-md) var(--space-lg);
+  border-bottom: 1px solid var(--border);
+}
+
+.info-content {
+  padding: var(--space-md) var(--space-lg);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.info-content-left,
+.info-content-right {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+/* Quick info panel */
+
+.quick-info-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.quick-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.quick-info h2 {
+  margin-bottom: var(--space-sm);
+}
+
+.quick-info p {
+  margin-bottom: var(--space-md);
+}
+
+.quick-info label {
+  margin-bottom: var(--space-sm);
+}
+
+/* Budget panel */
+
+.budget-category {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+.budget-controls {
+  margin-top: var(--space-md);
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-sm);
+}
+
+/* Categories panel */
+
+.transaction-amounts {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-sm);
+}
+
+/* Daily transactions panel */
+
+.daily-transactions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}

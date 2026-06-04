@@ -1,0 +1,124 @@
+/* Structural */
+
+.card {
+  /* background-color: var(--bg-muted); */
+  background-image: linear-gradient(var(--bg-muted), var(--bg-muted-2));
+  border: 1px solid var(--border);
+  padding: var(--space-md);
+  border-radius: var(--space-md);
+}
+
+.card-header {
+  margin-bottom: var(--space-md);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.card-header-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.card-header-badges {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-sm);
+}
+
+hr {
+  border: none;
+  width: 100%;
+  height: 1px;
+  background-color: var(--border);
+}
+
+hr.vertical {
+  width: 1px;
+  height: 100%;
+}
+
+/* Meters */
+
+.line-meter {
+  appearance: none;
+  width: 100%;
+  height: 10px;
+}
+
+.line-meter::-webkit-meter-optimum-value {
+  background: none;
+  background-color: var(--fg);
+  border-radius: 10000px;
+}
+
+.line-meter::-webkit-meter-bar {
+  background: none;
+  background-color: var(--border);
+  border-radius: 10000px;
+}
+
+.circle-meter {
+  appearance: none;
+  width: 1.5em;
+  height: 1.5em;
+}
+
+.circle-meter::-webkit-meter-optimum-value {
+  --angle: calc(var(--progress) * 360deg);
+  width: 100%;
+  background: none;
+  background-image: conic-gradient(
+    var(--fg) var(--angle),
+    var(--border) var(--angle)
+  );
+  mask-image: radial-gradient(transparent 45%, black 45%);
+}
+
+.circle-meter::-webkit-meter-bar {
+  background: none;
+  border-radius: 100%;
+  overflow: hidden;
+}
+
+.circle-meter-label-wrapper {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+/* Tables */
+
+.table-wrapper {
+  border-radius: var(--space-sm);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+table {
+  width: 100%;
+  text-align: left;
+  border-collapse: collapse;
+}
+
+tr:not(tr:last-child) {
+  border-bottom: 1px solid var(--border);
+}
+
+tr:hover {
+  background-color: var(--trans);
+}
+
+th, td {
+  padding: var(--space-sm) var(--space-md);
+}
+
+th {
+  background-color: var(--border);
+}
+
+th:first-child, td:first-child {
+  width: 100%;
+}
