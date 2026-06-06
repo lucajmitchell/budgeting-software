@@ -1,43 +1,29 @@
 from flask import Flask, render_template, request, jsonify
 from utils.database_utils import Database
-from utils.data_utils import fillDatabase
+from utils.data_utils import fillTransactions
+from utils.api_utils import (
+  getPeriods,
+)
 
 app = Flask(__name__)
 
-db = Database()
-db.dropTables(['Transactions'])
-db.createTable('Transactions', ['ID INTEGER PRIMARY KEY', 'Date', 'Counterparty', 'Amount', 'Category'])
-fillDatabase(db)
+# Setup database
+db = Database('venv/src/database.db')
+db.dropTable('Transactions')
+db.createTable('Transactions', ['Date', 'Counterparty', 'Amount', 'CategoryId'])
+db.createTable('Aliases', ['Contains', 'Alias', 'CategoryId'])
+db.createTable('Categories', ['Id INTEGER PRIMARY KEY', 'Name', 'Budget'])
+fillTransactions(db=db, dataFolder='venv/src/data')
 
+# Render home page (default)
 @app.route('/')
 def home():
   return render_template('index.html')
 
+# Returns JSON containing the years and months with available data
 @app.route('/api/periods')
-def getPeriods():
-
-  # Get years and months in form [('YYYY', 'MM,MM,MM,...'), ...]
-  rows = db.fetch('''
-    SELECT
-      strftime('%Y', Date) AS year,
-      GROUP_CONCAT(DISTINCT CAST(strftime('%m', Date) AS INTEGER)) AS months
-    FROM Transactions
-    GROUP BY year
-    ORDER BY year
-  ''', ())
-
-  # Format to [{ 'year': YYYY, 'months': [MM, MM, MM, ...] }, ...]
-  periods = []
-  for year, months in rows:
-    yearFormatted = int(year)
-    monthsFormatted = [int(month) for month in months.split(',')]
-    monthsFormatted.sort()
-
-    periods.append({
-      'year': yearFormatted,
-      'months': monthsFormatted
-    })
-
+def api_getPeriods():
+  periods = getPeriods(db)
   return jsonify(periods)
 
 if __name__ == '__main__':
