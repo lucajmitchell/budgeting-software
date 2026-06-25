@@ -7,25 +7,10 @@ function createSideBarTitle(year) {
 }
 
 function createSideBarButton(month, year) {
-  const monthNames = {
-    1: "January",
-    2: "February",
-    3: "March",
-    4: "April",
-    5: "May",
-    6: "June",
-    7: "July",
-    8: "August",
-    9: "September",
-    10: "October",
-    11: "November",
-    12: "December",
-  };
-
   const container = document.querySelector(".side-bar");
   const newButton = document.createElement("button");
   newButton.className = "button faint";
-  newButton.textContent = `${monthNames[month]} ${year}`;
+  newButton.textContent = `${MONTH_NAMES[month]} ${year}`;
   newButton.onclick = () => loadDataFor(year, month);
   container.appendChild(newButton);
 }
@@ -55,7 +40,22 @@ async function getPeriods() {
   return data;
 }
 
+function getMostRecentMonth(periods) {
+  return periods
+    .map((group) => ({
+      year: group.year,
+      month: Math.max(...group.months),
+    }))
+    .sort((a, b) => {
+      if (a.year !== b.year) return b.year - a.year;
+      return b.month - a.month;
+    })[0];
+}
+
 document.addEventListener("DOMContentLoaded", async () => {
-  const periods = await getPeriods()
-  populateSideBar(periods)
+  const periods = await getPeriods();
+  populateSideBar(periods);
+
+  const mostRecentMonth = getMostRecentMonth(periods);
+  loadDataFor(mostRecentMonth.year, mostRecentMonth.month);
 });

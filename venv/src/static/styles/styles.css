@@ -3,14 +3,21 @@ html {
 }
 
 :root {
-  --bg: #0a0a0a;
+  /* --bg: #0a0a0a;
   --bg-muted: #161616;
-  --bg-muted-2: #1d1d1d;
   --fg: #e5e5e5;
   --fg-muted: #666666;
   --border: #2e2e2e;
-  --trans: rgba(255, 255, 255, 0.03);
+  --trans: rgba(255, 255, 255, 0.03); */
 
+  --bg: #ffffff;
+  --bg-muted: #f4f4f4;
+  --fg: #1a1a1a;
+  --fg-muted: #8a8a8a;
+  --border: #dcdcdc;
+  --trans: rgba(0, 0, 0, 0.03);
+
+  --space-xs: 0.5rem;
   --space-sm: 1rem;
   --space-md: 2rem;
   --space-lg: 4rem;
@@ -57,14 +64,14 @@ body {
   padding: var(--space-sm);
 }
 
-.side-bar .button {
-  width: 30rem;
-}
-
-.side-bar .gap {
+.side-bar-buttons {
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
+}
+
+.side-bar .button {
+  width: 30rem;
 }
 
 .side-bar hr {
@@ -96,41 +103,53 @@ body {
 
 .info-content {
   padding: var(--space-md) var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.quick-info-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.info-columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: var(--space-md);
 }
 
-.info-content-left,
-.info-content-right {
+.info-left {
   display: flex;
   flex-direction: column;
   gap: var(--space-md);
+}
+
+.info-right {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+  height: fit-content;
 }
 
 /* Quick info panel */
 
-.quick-info-panel {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-md);
-}
-
 .quick-info {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .quick-info h2 {
   margin-bottom: var(--space-sm);
 }
 
-.quick-info p {
-  margin-bottom: var(--space-md);
-}
+/* Graph panel */
 
-.quick-info label {
-  margin-bottom: var(--space-sm);
+.graph-wrapper {
+  width: 100%;
+  height: 40rem;
 }
 
 /* Budget panel */
@@ -151,16 +170,14 @@ body {
 
 /* Categories panel */
 
+#category-transactions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
 .transaction-amounts {
   display: flex;
   flex-direction: row;
   gap: var(--space-sm);
-}
-
-/* Daily transactions panel */
-
-.daily-transactions {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: var(--space-md);
 }

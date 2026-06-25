@@ -1,4 +1,3 @@
-
 def getPeriods(db):
   yearsAndMonths = db.fetch('''
     SELECT
@@ -6,16 +5,14 @@ def getPeriods(db):
       GROUP_CONCAT(DISTINCT CAST(strftime('%m', Date) AS INTEGER)) AS months
     FROM Transactions
     GROUP BY year
-    ORDER BY year
+    ORDER BY year DESC
   ''')
 
   periods = []
-
   for year, months in yearsAndMonths:
     yearFormatted = int(year)
     monthsFormatted = [int(month) for month in months.split(',')]
     monthsFormatted.sort()
-
     periods.append({
       'year': yearFormatted,
       'months': monthsFormatted

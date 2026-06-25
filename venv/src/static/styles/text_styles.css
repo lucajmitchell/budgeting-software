@@ -76,14 +76,16 @@
 .badge {
   padding: 0.2em 0.4em;
   border-radius: 0.5em;
-  background-color: rgba(var(--color), 0.2);
+  background-color: rgba(var(--color), 0.1);
   color: rgb(var(--color));
   width: fit-content;
   height: fit-content;
+  white-space: nowrap;
 }
 
 .badge.neutral {
-  outline: 1px solid var(--fg-muted);
+  border: 1px solid var(--border);
+  color: var(--fg-muted);
 }
 
 .badge.good {

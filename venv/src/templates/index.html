@@ -6,196 +6,115 @@
     <title>Budgeting Software</title>
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='styles.css') }}"
+      href="{{ url_for('static', filename='styles/styles.css') }}"
     />
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='text_styles.css') }}"
+      href="{{ url_for('static', filename='styles/text_styles.css') }}"
     />
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='component_styles.css') }}"
+      href="{{ url_for('static', filename='styles/component_styles.css') }}"
     />
   </head>
   <body>
     <div class="main">
       <div class="side-bar">
-        <button class="button filled">Data sources</button>
+        <div class="side-bar-buttons">
+          <button class="button filled">Edit transaction data</button>
+        </div>
         <hr />
       </div>
       <div class="info-panel">
         <div class="top-bar">
-          <h1>June 2026</h1>
-          <a href="" class="link">Bank</a>
+          <h1 id="page-title"></h1>
+          <a href="https://www.hsbc.co.uk" target="_blank" class="link">Bank</a>
         </div>
         <div class="info-content">
-          <div class="info-content-left">
-            <div class="quick-info-panel">
-              <div class="card quick-info">
-                <h2 class="muted">Money remaining:</h2>
-                <p class="large">£123.00</p>
-                <label for="budget-meter" class="small muted"
-                  >Money spent:</label
-                >
-                <meter
-                  value="30"
-                  max="100"
-                  class="line-meter"
-                  id="budget-meter"
-                ></meter>
+          <div class="quick-info-panel">
+            <div class="card quick-info">
+              <div>
+                <h2 class="muted">Total Budget</h2>
+                <p class="large" id="quick-info-budget"></p>
               </div>
-              <div class="card quick-info">
-                <h2 class="muted">Days remaining:</h2>
-                <p class="large">123</p>
-                <label for="month-meter" class="small muted"
-                  >Month progress:</label
-                >
-                <meter
-                  value="17"
-                  max="31"
-                  class="line-meter"
-                  id="month-meter"
-                ></meter>
+              <span
+                class="small badge neutral"
+                id="quick-info-budget-daily"
+              ></span>
+            </div>
+            <div class="card quick-info">
+              <div>
+                <h2 class="muted">Money Remaining</h2>
+                <p class="large" id="quick-info-remaining"></p>
+              </div>
+              <span
+                class="small badge neutral"
+                id="quick-info-remaining-daily"
+              ></span>
+            </div>
+            <div class="card quick-info">
+              <div>
+                <h2 class="muted">Total Income</h2>
+                <p class="large" id="quick-info-income"></p>
               </div>
             </div>
-            <div class="card">
-              <div class="card-header">
-                <div class="card-header-text">
-                  <h2 class="title">Budget</h2>
-                  <p class="muted">
-                    Income and expenses organised by category.
-                  </p>
-                </div>
-                <div class="card-header-badges">
-                  <span class="badge good">£123.00</span>
-                  <span class="badge bad">£456.00</span>
-                </div>
+            <div class="card quick-info">
+              <div>
+                <h2 class="muted">Total Spending</h2>
+                <p class="large" id="quick-info-spending"></p>
               </div>
-              <div class="table-wrapper">
-                <table>
-                  <tr>
-                    <th>Category</th>
-                    <th>Spent</th>
-                    <th>Budget</th>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="circle-meter-label-wrapper">
-                        <meter
-                          value="20"
-                          max="100"
-                          class="circle-meter"
-                          id="category-meter-1"
-                        ></meter>
-                        <label for="category-meter-1">Category</label>
-                      </div>
-                    </td>
-                    <td><span class="badge good">£123.00</span></td>
-                    <td>£456.00</td>
-                  </tr>
-                  <tr>
-                    <td>
-                      <div class="circle-meter-label-wrapper">
-                        <meter
-                          value="20"
-                          max="100"
-                          class="circle-meter"
-                          id="category-meter-1"
-                        ></meter>
-                        <label for="category-meter-1">Category</label>
-                      </div>
-                    </td>
-                    <td><span class="badge bad">£123.00</span></td>
-                    <td>£456.00</td>
-                  </tr>
-                </table>
-              </div>
-              <div class="budget-controls">
-                <button class="button outline">Edit aliases</button>
-                <button class="button outline">Edit categories</button>
-                <button class="button outline">Edit budget</button>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-header">
-                <div class="card-header-text">
-                  <h2 class="title">Category title</h2>
-                  <p class="muted">Brief description about this category.</p>
-                </div>
-                <div class="card-header-badges">
-                  <span class="badge good">£123.00</span>
-                  <span class="badge bad">£456.00</span>
-                </div>
-              </div>
-              <div class="table-wrapper">
-                <table>
-                  <tr>
-                    <th>Counterparty</th>
-                    <th>In</th>
-                    <th>Out</th>
-                  </tr>
-                  <tr>
-                    <td>Counterparty</td>
-                    <td>£123.00</td>
-                    <td>£456.00</td>
-                  </tr>
-                  <tr>
-                    <td>Counterparty</td>
-                    <td>£123.00</td>
-                    <td>£456.00</td>
-                  </tr>
-                </table>
-              </div>
+              <span
+                class="small badge neutral"
+                id="quick-info-spending-daily"
+              ></span>
             </div>
           </div>
-          <div class="info-content-right">
-            <div class="daily-transactions">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-header-text">
+                <h2 class="title">Spending Graph</h2>
+                <p class="muted">Cumulative spending for this month.</p>
+              </div>
+            </div>
+            <div class="graph-wrapper">
+              <canvas id="monthly-spend-graph"></canvas>
+            </div>
+          </div>
+          <div class="info-columns">
+            <div class="info-left">
               <div class="card">
                 <div class="card-header">
                   <div class="card-header-text">
-                    <h2 class="title">01/05/2026</h2>
-                  </div>
-                  <div class="card-header-badges">
-                    <span class="badge good">£123</span>
-                    <span class="badge bad">£456</span>
+                    <h2 class="title">Budget</h2>
+                    <p class="muted">
+                      Summary of spending and budget for categorised transactions.
+                    </p>
                   </div>
                 </div>
                 <div class="table-wrapper">
-                  <table>
-                    <tr>
-                      <th>Counterparty</th>
-                      <th>In</th>
-                      <th>Out</th>
-                    </tr>
-                    <tr>
-                      <td>Counterparty</td>
-                      <td>£123</td>
-                      <td>£456</td>
-                    </tr>
-                    <tr>
-                      <td>Counterparty</td>
-                      <td>£123</td>
-                      <td>£456</td>
-                    </tr>
-                  </table>
+                  <table id="budget-table"></table>
+                </div>
+                <div class="budget-controls">
+                  <button class="button outline">Edit aliases</button>
+                  <button class="button outline">Edit categories</button>
                 </div>
               </div>
+              <div id="category-transactions"></div>
             </div>
+            <div class="info-right" id="daily-transactions"></div>
           </div>
         </div>
       </div>
     </div>
   </body>
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const meters = document.querySelectorAll(".circle-meter");
-      meters.forEach((meter) => {
-        const value = Number(meter.getAttribute("value"));
-        const max = Number(meter.getAttribute("max"));
-        const progress = value / max;
-        meter.style.setProperty("--progress", progress);
-      });
-    });
-  </script>
-  <script src="{{ url_for('static', filename='sidebar.js') }}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="{{ url_for('static', filename='scripts/utils.js') }}"></script>
+  <script src="{{ url_for('static', filename='scripts/sidebar.js') }}"></script>
+  <script src="{{ url_for('static', filename='scripts/top_bar.js') }}"></script>
+  <script src="{{ url_for('static', filename='scripts/quick_info.js') }}"></script>
+  <script src="{{ url_for('static', filename='scripts/graph.js') }}"></script>
+  <script src="{{ url_for('static', filename='scripts/budget.js') }}"></script>
+  <script src="{{ url_for('static', filename='scripts/daily_transactions.js') }}"></script>
+  <script src="{{ url_for('static', filename='scripts/category_transactions.js') }}"></script>
+  <script src="{{ url_for('static', filename='scripts/main.js') }}"></script>
 </html>

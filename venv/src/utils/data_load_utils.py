@@ -34,17 +34,10 @@ def fillTransactions(db, dataFolder):
     date = str(transaction['Date'])[:10]
     counterparty = transaction['Counterparty']
     amount = transaction['Amount']
-    
-    # Get category
-    categoryId = db.fetch(
-      '''SELECT CategoryId FROM Aliases WHERE ? LIKE '%' || Contains || '%';''',
-      (counterparty, )
-    )
-    categoryId = categoryId[0][0] if len(categoryId) > 0 else None
 
     # Create new record in transactions
     db.insert(
       table='Transactions',
-      fields=['Date', 'Counterparty', 'Amount', 'CategoryId'],
-      values=(date, counterparty, amount, categoryId, )
+      fields=['Date', 'Counterparty', 'Amount'],
+      values=(date, counterparty, amount)
     )
