@@ -1,3 +1,26 @@
+function createDoughnutChart(container, dataset) {
+  const ctx = document.getElementById(container);
+  new Chart(ctx, {
+    type: "doughnut",
+    data: {
+      labels: dataset.categories,
+      datasets: [
+        {
+          label: dataset.label,
+          data: dataset.values,
+        },
+      ],
+    },
+    options: {
+      plugins: {
+        legend: {
+          position: "bottom",
+        },
+      },
+    },
+  });
+}
+
 async function fillBudget(year, month) {
   // Reset table
   document.getElementById("budget-table").innerHTML = "";
@@ -39,4 +62,28 @@ async function fillBudget(year, month) {
   // Add HTML to table
   document.getElementById("budget-table").innerHTML += rows;
   drawCircleMeters();
+
+  // Create donut charts
+  let categories = [];
+  let budgetedValues = [];
+  let actualValues = [];
+  budget.forEach((category) => {
+    categories.push(category.category);
+    budgetedValues.push(category.budget);
+    actualValues.push(category.spending);
+  });
+
+  const budgetedDistribution = {
+    label: "Budget",
+    categories: categories,
+    values: budgetedValues,
+  };
+  createDoughnutChart("budgeted-distribution", budgetedDistribution);
+
+  const actualDistribution = {
+    label: "Spending",
+    categories: categories,
+    values: actualValues,
+  };
+  createDoughnutChart("actual-distribution", actualDistribution);
 }

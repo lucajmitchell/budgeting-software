@@ -56,6 +56,18 @@ setup(db)
 def home():
   return render_template('index.html')
 
+@app.route('/transactions')
+def transactions():
+  return render_template('transactions.html')
+
+@app.route('/aliases')
+def aliases():
+  return render_template('aliases.html')
+
+@app.route('/categories')
+def categories():
+  return render_template('categories.html')
+
 # Returns JSON containing the years and months that have data
 @app.route('/api/periods')
 def getPeriods():

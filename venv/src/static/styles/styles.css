@@ -3,24 +3,20 @@ html {
 }
 
 :root {
-  /* --bg: #0a0a0a;
-  --bg-muted: #161616;
-  --fg: #e5e5e5;
-  --fg-muted: #666666;
-  --border: #2e2e2e;
-  --trans: rgba(255, 255, 255, 0.03); */
-
   --bg: #ffffff;
-  --bg-muted: #f4f4f4;
+  --bg-muted: #f8f8f8;
   --fg: #1a1a1a;
   --fg-muted: #8a8a8a;
-  --border: #dcdcdc;
+  --border: #e4e4e4;
   --trans: rgba(0, 0, 0, 0.03);
+  --good: 23, 175, 104;
+  --bad: 175, 28, 23;
 
   --space-xs: 0.5rem;
   --space-sm: 1rem;
   --space-md: 2rem;
   --space-lg: 4rem;
+  --card-gap: var(--space-md);
 
   --text-sm: 12px;
   --text-md: 14px;
@@ -89,6 +85,7 @@ body {
   flex-grow: 1;
   min-height: 100%;
   border-radius: var(--space-md);
+  border: 1px solid var(--border);
 }
 
 .top-bar {
@@ -98,46 +95,45 @@ body {
   justify-content: space-between;
   height: fit-content;
   padding: var(--space-md) var(--space-lg);
-  border-bottom: 1px solid var(--border);
 }
 
-.info-content {
+.info-section {
   padding: var(--space-md) var(--space-lg);
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
-}
-
-.quick-info-panel {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
-  gap: var(--space-md);
+  gap: var(--card-gap);
 }
 
 .info-columns {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-md);
+  gap: var(--card-gap);
 }
 
 .info-left {
   display: flex;
   flex-direction: column;
-  gap: var(--space-md);
+  gap: var(--card-gap);
 }
 
 .info-right {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: var(--space-md);
+  gap: var(--card-gap);
   height: fit-content;
 }
 
 /* Quick info panel */
 
+.quick-info-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  gap: var(--card-gap);
+}
+
 .quick-info {
   display: flex;
-  flex-direction: row;
+  flex-direction: row !important;
   justify-content: space-between;
 }
 
@@ -154,6 +150,12 @@ body {
 
 /* Budget panel */
 
+.budget-panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--card-gap);
+}
+
 .budget-category {
   display: flex;
   flex-direction: row;
@@ -161,11 +163,10 @@ body {
   align-items: center;
 }
 
-.budget-controls {
-  margin-top: var(--space-md);
-  display: flex;
-  flex-direction: row;
-  gap: var(--space-sm);
+.budget-charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--card-gap);
 }
 
 /* Categories panel */
@@ -180,4 +181,20 @@ body {
   display: flex;
   flex-direction: row;
   gap: var(--space-sm);
+}
+
+/* Config pages */
+
+.config-page {
+  background-color: var(--bg);
+  padding: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.config-head {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-md);
 }

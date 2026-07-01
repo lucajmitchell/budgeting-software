@@ -28,6 +28,11 @@
   text-align: left;
   padding: var(--space-sm);
   border-radius: var(--space-sm);
+  text-decoration: none;
+}
+
+.button.small-button {
+  padding: var(--space-xs) var(--space-sm);
 }
 
 .button.filled {
@@ -51,15 +56,21 @@
   background-color: var(--trans);
 }
 
+.button.destructive {
+  background-color: rgba(var(--bad), 0.2);
+  color: rgb(var(--bad));
+}
+
+.button.destructive:hover {
+  background-color: rgba(var(--bad), 0.3);
+}
+
 /* Links */
 
 .link {
   text-decoration: none;
   position: relative;
-}
-
-.link::after {
-  content: " ↗";
+  display: inline-flex;
 }
 
 .link:hover::before {
@@ -69,6 +80,25 @@
   background-color: currentColor;
   position: absolute;
   top: 100%;
+}
+
+.link.external::after {
+  content: "↗";
+  margin-left: var(--space-xs);
+}
+
+.link.return::after {
+  content: "←";
+  order: -1;
+  margin-right: var(--space-xs);
+}
+
+.link.muted:hover {
+  color: var(--fg);
+}
+
+.link.muted:hover::before {
+  display: none;
 }
 
 /* Badges */
@@ -89,9 +119,9 @@
 }
 
 .badge.good {
-  --color: 23, 175, 104;
+  --color: var(--good);
 }
 
 .badge.bad {
-  --color: 175, 28, 23;
+  --color: var(--bad);
 }

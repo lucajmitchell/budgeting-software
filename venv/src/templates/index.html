@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Budgeting Software</title>
+    <title>Budgeting Software | Home</title>
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='styles/styles.css') }}"
@@ -21,16 +21,21 @@
     <div class="main">
       <div class="side-bar">
         <div class="side-bar-buttons">
-          <button class="button filled">Edit transaction data</button>
+          <a href="{{ url_for('transactions') }}" class="button filled"
+            >Edit transaction data</a
+          >
         </div>
         <hr />
       </div>
       <div class="info-panel">
         <div class="top-bar">
           <h1 id="page-title"></h1>
-          <a href="https://www.hsbc.co.uk" target="_blank" class="link">Bank</a>
+          <a href="https://www.hsbc.co.uk" target="_blank" class="link external"
+            >Bank</a
+          >
         </div>
-        <div class="info-content">
+        <hr />
+        <div class="info-section">
           <div class="quick-info-panel">
             <div class="card quick-info">
               <div>
@@ -73,32 +78,57 @@
             <div class="card-header">
               <div class="card-header-text">
                 <h2 class="title">Spending Graph</h2>
-                <p class="muted">Cumulative spending for this month.</p>
+                <p class="muted">Cumulative spending for this month</p>
               </div>
             </div>
             <div class="graph-wrapper">
               <canvas id="monthly-spend-graph"></canvas>
             </div>
           </div>
-          <div class="info-columns">
-            <div class="info-left">
-              <div class="card">
-                <div class="card-header">
-                  <div class="card-header-text">
-                    <h2 class="title">Budget</h2>
-                    <p class="muted">
-                      Summary of spending and budget for categorised transactions.
-                    </p>
-                  </div>
-                </div>
-                <div class="table-wrapper">
-                  <table id="budget-table"></table>
-                </div>
-                <div class="budget-controls">
-                  <button class="button outline">Edit aliases</button>
-                  <button class="button outline">Edit categories</button>
+          <div class="budget-panel">
+            <div class="card">
+              <div class="card-header">
+                <div class="card-header-text">
+                  <h2 class="title">Budget</h2>
+                  <p class="muted">
+                    Summary of spending and budget for categorised transactions
+                  </p>
                 </div>
               </div>
+              <div class="table-wrapper">
+                <table id="budget-table"></table>
+              </div>
+              <div class="card-buttons">
+                <a href="{{ url_for('aliases') }}" class="button outline"
+                  >Edit aliases</a
+                >
+                <a href="{{ url_for('categories') }}" class="button outline"
+                  >Edit categories</a
+                >
+              </div>
+            </div>
+            <div class="budget-charts">
+              <div class="card">
+                <div class="card-header-text">
+                  <h2 class="title">Budgeted Distribution</h2>
+                  <p class="muted">Planned distribution of spending</p>
+                </div>
+                <canvas id="budgeted-distribution"></canvas>
+              </div>
+              <div class="card">
+                <div class="card-header-text">
+                  <h2 class="title">Actual Distribution</h2>
+                  <p class="muted">Actual distribution of spending</p>
+                </div>
+                <canvas id="actual-distribution"></canvas>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr />
+        <div class="info-section">
+          <div class="info-columns">
+            <div class="info-left">
               <div id="category-transactions"></div>
             </div>
             <div class="info-right" id="daily-transactions"></div>

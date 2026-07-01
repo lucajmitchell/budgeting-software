@@ -1,14 +1,16 @@
-/* Structural */
+/* Cards */
 
 .card {
   background-color: var(--bg-muted);
   border: 1px solid var(--border);
   padding: var(--space-md);
   border-radius: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
 }
 
 .card-header {
-  margin-bottom: var(--space-md);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -25,6 +27,14 @@
   flex-direction: row;
   gap: var(--space-sm);
 }
+
+.card-buttons {
+  display: flex;
+  flex-direction: row;
+  gap: var(--space-sm);
+}
+
+/* Structural */
 
 hr {
   border: none;

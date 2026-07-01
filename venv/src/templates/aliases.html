@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Budgeting Software | Aliases</title>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/styles.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/text_styles.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/component_styles.css') }}"
+    />
+  </head>
+  <body class="config-page">
+    <div class="config-head">
+      <a href="{{ url_for('home') }}" class="link return muted">Home</a>
+      <h1>Edit aliases</h1>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-header-text">
+          <h2 class="title">Aliases</h2>
+          <p class="muted">
+            Group transactions from different counterparties under a single name
+          </p>
+        </div>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <tr>
+            <th>Alias</th>
+            <th>Category</th>
+            <th>Ignore</th>
+            <th>Remove</th>
+          </tr>
+        </table>
+      </div>
+      <div class="card-buttons">
+        <button class="button filled">Add alias</button>
+      </div>
+    </div>
+    <script src="{{ url_for('static', filename='scripts/utils.js') }}"></script>
+  </body>
+</html>

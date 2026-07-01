@@ -5,7 +5,7 @@ def getCategories(db):
     SELECT Id, Name
     FROM Categories
   ''')
-  categoriesList.append((None, 'Uncategorized'))
+  categoriesList.append((None, 'Uncategorised'))
   return categoriesList
 
 def getFilterAndParamsFor(categoryId, year, month):
